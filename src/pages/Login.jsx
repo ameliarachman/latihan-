@@ -3,19 +3,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Lock, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth();
+    const { addToast } = useToast();
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
 
     const handleLogin = (e) => {
         e.preventDefault();
         setLoading(true);
+
         // Simulate API
         setTimeout(() => {
             setLoading(false);
-            navigate('/');
+            login(); // Set auth state to true
+            addToast({ title: 'Welcome Back!', description: 'Logged in successfully.' });
+            navigate('/'); // Redirect to dashboard
         }, 1500);
     };
 
@@ -27,7 +34,8 @@ export default function Login() {
                 <div className="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-blue-600 to-indigo-700 text-white relative overflow-hidden">
                     <div className="relative z-10">
                         <div className="w-12 h-12 rounded-xl backdrop-blur-sm flex items-center justify-center mb-8">
-                            <img src="/MKT LOGO putih.png" alt="logo" />
+                            {/* Placeholder for Logo */}
+                            <span className="text-2xl font-bold border-2 border-white rounded-lg p-1">MK</span>
                         </div>
                         <h1 className="text-4xl font-bold leading-tight mb-4">MEGA KREASI TICKETING</h1>
                         <p className="text-blue-100 text-lg leading-relaxed">Streamline your support workflow with our advanced ticketing system. Fast, reliable, and professional.</p>

@@ -4,9 +4,11 @@ import { Button } from '../components/ui/Button';
 import { Plus, MoreHorizontal, Shield, Mail, Phone, X, Save, Trash2, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useData } from '../context/DataContext';
+import { useToast } from '../context/ToastContext';
 
 export default function Team() {
     const { team, addMember, updateMember, deleteMember } = useData();
+    const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingMember, setEditingMember] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -35,8 +37,10 @@ export default function Team() {
         e.preventDefault();
         if (editingMember) {
             updateMember({ ...formData, id: editingMember.id });
+            addToast({ title: 'Member Updated', description: `${formData.name} has been updated successfully.` });
         } else {
             addMember(formData);
+            addToast({ title: 'Member Added', description: `${formData.name} has been added to the team.` });
         }
         setIsModalOpen(false);
     };
@@ -44,6 +48,7 @@ export default function Team() {
     const handleDelete = (id) => {
         if (confirm('Are you sure you want to remove this member?')) {
             deleteMember(id);
+            addToast({ title: 'Member Removed', description: 'Team member has been removed.', type: 'error' });
         }
     }
 
