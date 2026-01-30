@@ -6,9 +6,11 @@ import { TicketModal } from '../components/ticketing/TicketModal';
 import { generateId } from '../lib/utils';
 import { motion } from 'framer-motion';
 import { useData } from '../context/DataContext';
+import { useToast } from '../context/ToastContext';
 
 export default function Ticketing() {
     const { tickets, addTicket, updateTicket } = useData();
+    const { addToast } = useToast();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedTicket, setSelectedTicket] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -24,6 +26,7 @@ export default function Ticketing() {
         if (selectedTicket) {
             // Update existing via Context
             updateTicket(ticketData);
+            addToast({ title: 'Ticket Updated', description: `Ticket #${ticketData.id} has been updated.` });
         } else {
             // Create new via Context
             const newTicket = {
@@ -34,6 +37,7 @@ export default function Ticketing() {
                 date: ticketData.date || new Date().toISOString()
             };
             addTicket(newTicket);
+            addToast({ title: 'Ticket Created', description: 'New support ticket has been logged successfully.' });
         }
         setIsModalOpen(false);
     };
@@ -43,6 +47,7 @@ export default function Ticketing() {
         const ticketToUpdate = tickets.find(t => t.id === id);
         if (ticketToUpdate) {
             updateTicket({ ...ticketToUpdate, [field]: value });
+            addToast({ title: 'Status Updated', description: `Ticket status changed to ${value}` });
         }
     };
 
@@ -54,7 +59,8 @@ export default function Ticketing() {
     const filteredTickets = tickets.filter(t =>
         (t.case?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
         (t.site?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
-        (t.user?.toLowerCase() || '').includes(searchQuery.toLowerCase())
+        (t.user?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+        (t.id?.toLowerCase() || '').includes(searchQuery.toLowerCase())
     );
 
     return (

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { User, Bell, Lock, Globe, Moon, Save } from 'lucide-react';
+import { useToast } from '../context/ToastContext';
 
 export default function Settings() {
+    const { addToast } = useToast();
     const [emailNotif, setEmailNotif] = useState(true);
     const [pushNotif, setPushNotif] = useState(true);
 
@@ -19,9 +21,27 @@ export default function Settings() {
         // Simulate API call
         setTimeout(() => {
             setIsSaving(false);
-            alert('Profile updated successfully!');
+            addToast({ title: 'Profile Updated', description: 'Your profile information has been saved successfully.' });
         }, 1000);
     };
+
+    const toggleEmailNotif = () => {
+        const newState = !emailNotif;
+        setEmailNotif(newState);
+        addToast({
+            title: newState ? 'Email Notifications Enabled' : 'Email Notifications Disabled',
+            type: newState ? 'success' : 'error' // Simple visual distinction
+        });
+    }
+
+    const togglePushNotif = () => {
+        const newState = !pushNotif;
+        setPushNotif(newState);
+        addToast({
+            title: newState ? 'Push Notifications Enabled' : 'Push Notifications Disabled',
+            type: newState ? 'success' : 'error'
+        });
+    }
 
     return (
         <div className="space-y-6 animate-fade-in max-w-4xl mx-auto">
@@ -76,7 +96,7 @@ export default function Settings() {
                             <p className="text-xs text-slate-500">Receive summaries and updates via email</p>
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" checked={emailNotif} onChange={() => setEmailNotif(!emailNotif)} className="sr-only peer" />
+                            <input type="checkbox" checked={emailNotif} onChange={toggleEmailNotif} className="sr-only peer" />
                             <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                         </label>
                     </div>
@@ -87,7 +107,7 @@ export default function Settings() {
                             <p className="text-xs text-slate-500">Receive real-time alerts on your desktop</p>
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" checked={pushNotif} onChange={() => setPushNotif(!pushNotif)} className="sr-only peer" />
+                            <input type="checkbox" checked={pushNotif} onChange={togglePushNotif} className="sr-only peer" />
                             <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                         </label>
                     </div>
