@@ -1,0 +1,14 @@
+## Aplikasi Web HTML CSS JS , Web ticketing issue atau problem
+- Frontend dengan framework vite js
+- Aplikasi sederhana tiketing
+- buatkan aplikasi base ticketing problem issue yang detail serta design nya menarik
+- aplikasinya sangat responsif dan juga animasinya aktif
+- Bisa menuju halaman selanjutnya ketika click
+- Bisa membuat issue dengan format table
+- issue dibuat dengan fromat nama user, tanggal, case atau issue, site, solved, troubleshoot, notes
+- pastikan di semua kolom dapat di isi dengan mengetik, bisa di update juga
+- pastikan ada fitur delete dan update
+- Wireframe sudah disediakan moka1.png
+- Wireframe sudah disediakan moka2.png
+- Hasil protorype sudah disediakan hasil1.png
+- Hasil protorype sudah disediakan hasil2.png
