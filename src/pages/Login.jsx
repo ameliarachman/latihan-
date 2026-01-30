@@ -26,10 +26,10 @@ export default function Login() {
                 {/* Left Side - Branding */}
                 <div className="hidden lg:flex flex-col justify-between p-12 bg-gradient-to-br from-blue-600 to-indigo-700 text-white relative overflow-hidden">
                     <div className="relative z-10">
-                        <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-8">
-                            <span className="text-2xl font-bold">TF</span>
+                        <div className="w-12 h-12 rounded-xl backdrop-blur-sm flex items-center justify-center mb-8">
+                            <img src="/MKT LOGO putih.png" alt="logo" />
                         </div>
-                        <h1 className="text-4xl font-bold leading-tight mb-4">Enterprise Issue Tracking Solution</h1>
+                        <h1 className="text-4xl font-bold leading-tight mb-4">MEGA KREASI TICKETING</h1>
                         <p className="text-blue-100 text-lg leading-relaxed">Streamline your support workflow with our advanced ticketing system. Fast, reliable, and professional.</p>
                     </div>
 
