@@ -22,10 +22,10 @@ const chartData = [
 ];
 
 const activities = [
-    { type: 'new', title: 'Printer connection failure @ HR Dept', user: 'Sarah Wilson', time: '10 mins ago' },
-    { type: 'resolved', title: 'Network slowdown reported', user: 'Mike Chen', time: '1 hour ago' },
+    { type: 'new', title: 'Printer connection failure @ HR Dept', user: 'Dedy Irawan', time: '10 mins ago' },
+    { type: 'resolved', title: 'Network slowdown reported', user: 'Rendy Martiano', time: '1 hour ago' },
     { type: 'update', title: 'ERP Login Issue', user: 'System Admin', time: '2 hours ago' },
-    { type: 'new', title: 'New Employee Equipment Request', user: 'John Doe', time: '4 hours ago' },
+    { type: 'new', title: 'New Employee Equipment Request', user: 'Alif Fadilla', time: '4 hours ago' },
 ];
 
 export default function Dashboard() {

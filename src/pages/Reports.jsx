@@ -15,7 +15,7 @@ export default function Reports() {
 
     // Simple aggregation for chart (mock distribution based on context somewhat)
     const chartData = [
-        { name: 'Jan', value: 30 },
+        { name: 'Jan', value: 40 },
         { name: 'Feb', value: 45 },
         { name: 'Mar', value: 35 },
         { name: 'Apr', value: 60 },
